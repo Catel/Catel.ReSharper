@@ -21,7 +21,7 @@ namespace Catel.ReSharper
         #region Constructors and Destructors
         public LoggerListener()
         {
-#if DEBUG && !R9X && !R10X
+#if DEBUG && !R9X && !R10X && !R2017X
             Logger.AppendListener(new DebugOutputLogEventListener("CatelR#"));
 #endif
         }

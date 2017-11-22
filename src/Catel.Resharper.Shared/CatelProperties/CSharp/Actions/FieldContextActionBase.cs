@@ -10,13 +10,15 @@ namespace Catel.ReSharper.CatelProperties.CSharp.Actions
     using Catel.ReSharper.Identifiers;
 
     using JetBrains.Application;
+#if !R2017X
     using JetBrains.ReSharper.Feature.Services.CSharp.Bulbs;
+#endif
     using JetBrains.ReSharper.Psi;
     using JetBrains.ReSharper.Psi.CSharp.Tree;
     using JetBrains.ReSharper.Psi.Tree;
     using JetBrains.Util;
 
-#if R9X || R10X
+#if R9X || R10X || R2017X
     using JetBrains.ReSharper.Resources.Shell;
     using JetBrains.ReSharper.Feature.Services.CSharp.Analyses.Bulbs;
 #endif

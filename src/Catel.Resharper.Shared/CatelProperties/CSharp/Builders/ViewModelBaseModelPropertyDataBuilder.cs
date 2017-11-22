@@ -23,7 +23,6 @@ namespace Catel.ReSharper.CatelProperties.CSharp.Builders
     using JetBrains.ReSharper.Psi.Util;
     using JetBrains.Util;
 
-
 #if R80 || R81 || R82
     using JetBrains.Metadata.Reader.API;
     using JetBrains.ReSharper.Psi.Modules;
@@ -55,9 +54,15 @@ namespace Catel.ReSharper.CatelProperties.CSharp.Builders
             var classLikeDeclaration = context.ClassDeclaration;
             if (classLikeDeclaration != null)
             {
+#if R2017X
+                var includeInSerialization = bool.Parse(context.GetOption(OptionIds.IncludePropertyInSerialization));
+                var notificationMethod = bool.Parse(context.GetOption(OptionIds.ImplementPropertyChangedNotificationMethod));
+                var forwardEventArgument = bool.Parse(context.GetOption(OptionIds.ForwardEventArgumentToImplementedPropertyChangedNotificationMethod));
+#else
                 var includeInSerialization = bool.Parse(context.GetGlobalOptionValue(OptionIds.IncludePropertyInSerialization));
                 var notificationMethod = bool.Parse(context.GetGlobalOptionValue(OptionIds.ImplementPropertyChangedNotificationMethod));
                 var forwardEventArgument = bool.Parse(context.GetGlobalOptionValue(OptionIds.ForwardEventArgumentToImplementedPropertyChangedNotificationMethod));
+#endif
                 var propertyConverter = new PropertyConverter(factory, context.PsiModule, (IClassDeclaration)classLikeDeclaration);
                 foreach (var declaredElement in declaredElements)
                 {

@@ -17,7 +17,9 @@ namespace Catel.ReSharper.Arguments
     using JetBrains.Application;
     using JetBrains.Application.Progress;
     using JetBrains.DocumentModel;
+#if !R2017X
     using JetBrains.ReSharper.Feature.Services.CSharp.Bulbs;
+#endif
     using JetBrains.ReSharper.Feature.Services.LiveTemplates.Hotspots;
     using JetBrains.ReSharper.Feature.Services.LiveTemplates.LiveTemplates;
     using JetBrains.ReSharper.Psi;
@@ -37,27 +39,27 @@ namespace Catel.ReSharper.Arguments
 
     public abstract class ArgumentContextActionBase : ContextActionBase
     {
-        #region Static Fields
+#region Static Fields
         private static readonly ILog Log = LogManager.GetCurrentClassLogger();
 
-        #endregion
+#endregion
 
-        #region Fields
+#region Fields
         private ICSharpFunctionDeclaration _methodDeclaration;
 
         private IRegularParameterDeclaration _parameterDeclaration;
 
-        #endregion
+#endregion
 
-        #region Constructors and Destructors
+#region Constructors and Destructors
         protected ArgumentContextActionBase(ICSharpContextActionDataProvider provider)
             : base(provider)
         {
         }
 
-        #endregion
+#endregion
 
-        #region Public Methods and Operators
+#region Public Methods and Operators
 
         public override sealed bool IsAvailable(IUserDataHolder cache)
         {
@@ -91,9 +93,9 @@ namespace Catel.ReSharper.Arguments
                    && !IsArgumentChecked(_methodDeclaration, _parameterDeclaration);
         }
 
-        #endregion
+#endregion
 
-        #region Methods
+#region Methods
         protected abstract ICSharpStatement CreateArgumentCheckStatement(IRegularParameterDeclaration parameterDeclaration);
 
         protected abstract string CreateExceptionXmlDoc(IRegularParameterDeclaration parameterDeclaration);
@@ -152,6 +154,16 @@ namespace Catel.ReSharper.Arguments
                        ? (Action<ITextControl>)null
                        : textControl =>
                        {
+#if R2017X
+                           var hotspotSession =
+                               Shell.Instance.GetComponent<LiveTemplatesManager>()
+                                   .CreateHotspotSessionAtopExistingText(
+                                       solution,
+                                       DocumentRange.InvalidRange,
+                                       textControl,
+                                       LiveTemplatesManager.EscapeAction.LeaveTextAndCaret,
+                                       hotspotInfos);
+#else
                            var hotspotSession =
                                Shell.Instance.GetComponent<LiveTemplatesManager>()
                                     .CreateHotspotSessionAtopExistingText(
@@ -160,6 +172,8 @@ namespace Catel.ReSharper.Arguments
                                         textControl,
                                         LiveTemplatesManager.EscapeAction.LeaveTextAndCaret,
                                         hotspotInfos);
+#endif
+
                            hotspotSession.Execute();
                        };
         }
@@ -170,6 +184,6 @@ namespace Catel.ReSharper.Arguments
 
         protected abstract bool IsArgumentTypeTheExpected(IType type);
 
-        #endregion
+#endregion
     }
 }

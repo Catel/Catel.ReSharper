@@ -38,10 +38,15 @@ namespace Catel.ReSharper.CatelProperties.CSharp.Builders
 
             var factory = CSharpElementFactory.GetInstance(context.Root.GetPsiModule());
             var typeOwners = context.InputElements.OfType<GeneratorDeclaredElement<ITypeOwner>>().ToList();
-
+#if R2017X
+            var includeInSerialization = bool.Parse(context.GetOption(OptionIds.IncludePropertyInSerialization));
+            var notificationMethod = bool.Parse(context.GetOption(OptionIds.ImplementPropertyChangedNotificationMethod));
+            var forwardEventArgument = bool.Parse(context.GetOption(OptionIds.ForwardEventArgumentToImplementedPropertyChangedNotificationMethod));
+#else
             var includeInSerialization = bool.Parse(context.GetGlobalOptionValue(OptionIds.IncludePropertyInSerialization));
             var notificationMethod = bool.Parse(context.GetGlobalOptionValue(OptionIds.ImplementPropertyChangedNotificationMethod));
             var forwardEventArgument = bool.Parse(context.GetGlobalOptionValue(OptionIds.ForwardEventArgumentToImplementedPropertyChangedNotificationMethod));
+#endif
 
             var propertyConverter = new PropertyConverter(factory, context.PsiModule, (IClassDeclaration)context.ClassDeclaration);
             foreach (var typeOwner in typeOwners)
@@ -55,6 +60,6 @@ namespace Catel.ReSharper.CatelProperties.CSharp.Builders
             }
         }
 
-        #endregion
+#endregion
     }
 }

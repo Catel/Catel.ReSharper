@@ -5,8 +5,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Reflection;
-
+#if !R2017X
 using JetBrains.ActionManagement;
+#endif
 
 #if R81 || R82
 using JetBrains.Application.PluginSupport;

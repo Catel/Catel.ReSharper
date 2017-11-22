@@ -7,12 +7,17 @@ namespace Catel.ReSharper.CatelProperties.Actions
 {
     using Catel.Logging;
     using Catel.ReSharper.CatelProperties.Providers;
-
+    
+#if !R2017X
     using JetBrains.ActionManagement;
+#endif
+
     using JetBrains.ReSharper.Feature.Services.Generate.Actions;
     using JetBrains.UI.RichText;
 
-#if R8X
+#if R2017X
+    using JbActionAttribute = JetBrains.Application.UI.ActionsRevised.Menu.ActionAttribute;
+#elif R8X
     using JbActionAttribute = JetBrains.ActionManagement.ActionHandlerAttribute;
 #else
     using JbActionAttribute = JetBrains.UI.ActionsRevised.ActionAttribute;

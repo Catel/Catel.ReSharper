@@ -10,6 +10,9 @@ namespace Catel.ReSharper.CatelProperties.Workflows
     using JetBrains.Application.DataContext;
     using JetBrains.ReSharper.Feature.Services.Generate;
     using JetBrains.ReSharper.Feature.Services.Generate.Actions;
+#if R2017X
+    using JetBrains.ReSharper.Feature.Services.Generate.UI.New;
+#endif
     using JetBrains.ReSharper.Psi;
     using JetBrains.UI.Icons;
 
@@ -22,7 +25,9 @@ namespace Catel.ReSharper.CatelProperties.Workflows
     using JetBrains.ReSharper.Feature.Services.Generate.UI.New;
 #endif
 
+#if !R2017X
     using DataConstants = JetBrains.ProjectModel.DataContext.DataConstants;
+#endif
 
 #if R92 || R10X
     public class ExposeModelPropertyDataWorkflow : GenerateCodeWorkflowBase

@@ -16,7 +16,9 @@ namespace Catel.ReSharper.CatelProperties.Providers
     using JetBrains.ReSharper.Psi;
     using JetBrains.UI.Icons;
 
+#if !R2017X
     using DataConstants = JetBrains.ProjectModel.DataContext.DataConstants;
+#endif
 
     [GenerateProvider]
     public class GeneratePropertyDataItemProvider : IGenerateActionProvider
@@ -28,14 +30,17 @@ namespace Catel.ReSharper.CatelProperties.Providers
         public IEnumerable<IGenerateActionWorkflow> CreateWorkflow(IDataContext dataContext)
         {
             Argument.IsNotNull(() => dataContext);
-
+#if R2017X
+            var solution = dataContext.GetData(JetBrains.ProjectModel.DataContext.ProjectModelDataConstants.SOLUTION);
+#else
             var solution = dataContext.GetData(DataConstants.SOLUTION);
+#endif
             var iconManager = solution.GetComponent<PsiIconManager>();
             var icon = iconManager.GetImage(CLRDeclaredElementType.PROPERTY);
 
             yield return new GeneratePropertyDataWorkflow(icon);
         }
 
-        #endregion
+#endregion
     }
 }

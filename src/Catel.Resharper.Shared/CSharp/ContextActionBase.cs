@@ -5,7 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace Catel.ReSharper.CSharp
 {
-#if R9X || R10X
+#if R9X || R10X || R2017X
     using JetBrains.ReSharper.Feature.Services.CSharp.Analyses.Bulbs;
     using JetBrainsContextActionBase = JetBrains.ReSharper.Feature.Services.ContextActions.ContextActionBase;
 #else

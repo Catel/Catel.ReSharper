@@ -14,7 +14,9 @@ namespace Catel.ReSharper.Types
     using JetBrains.Application;
     using JetBrains.Application.Progress;
     using JetBrains.ProjectModel;
+#if !R2017X
     using JetBrains.ReSharper.Feature.Services.CSharp.Bulbs;
+#endif
     using JetBrains.ReSharper.Psi;
     using JetBrains.ReSharper.Psi.CSharp.Tree;
     using JetBrains.ReSharper.Psi.Tree;

@@ -8,7 +8,7 @@ namespace Catel.ReSharper.Helpers
     {
         internal static ConstantValue CreateStringValue(string p, IPsiModule psiModule, UniversalModuleReferenceContext universalModuleReferenceContext)
         {
-#if R10X
+#if R10X || R2017X
             return ClrConstantValueFactory.CreateStringValue(p, psiModule);
 #else
             return ClrConstantValueFactory.CreateStringValue(p, psiModule, universalModuleReferenceContext);

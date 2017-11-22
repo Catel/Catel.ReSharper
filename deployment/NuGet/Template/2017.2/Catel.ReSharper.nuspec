@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Catel.ReSharper.2017.2</id>
+    <version>[VERSION]</version>
+    <title>Catel.ReSharper</title>
+    <authors>Igr Alexánder Fernández Saúco</authors>
+	
+    <description>Catel Plugin for ReSharper</description>
+    <copyright>Copyright (c) 2008 - 2015 Catel development team. All rights reserved</copyright>
+    <iconUrl>https://raw.github.com/Catel/Catel.ReSharper/master/design/CatelR%232.png</iconUrl>
+    <tags>Catel Plugin</tags>
+	
+    <dependencies>
+      <dependency id="Wave" version="[9.0]" />
+    </dependencies>
+  </metadata>
+</package>

@@ -30,7 +30,7 @@ namespace Catel.ReSharper.Helpers
 
         public static IDeclaredType CreateTypeByCLRName(string typeName, IPsiModule psiModule, IModuleReferenceResolveContext moduleReferenceResolveContext)
         {
-#if R10X
+#if R10X || R2017X
             return TypeFactory.CreateTypeByCLRName(typeName, psiModule);
 #else
             return TypeFactory.CreateTypeByCLRName(typeName, psiModule, moduleReferenceResolveContext);

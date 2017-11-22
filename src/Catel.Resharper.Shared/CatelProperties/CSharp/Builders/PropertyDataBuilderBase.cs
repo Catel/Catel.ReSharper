@@ -7,15 +7,27 @@ namespace Catel.ReSharper.CatelProperties.CSharp.Builders
 {
     using System.Collections.Generic;
 
+    using Catel.Collections;
+
     using JetBrains.ReSharper.Feature.Services.CSharp.Generate;
     using JetBrains.ReSharper.Feature.Services.Generate;
 
     internal abstract class PropertyDataBuilderBase : GeneratorBuilderBase<CSharpGeneratorContext>
     {
+
+#if R2017X
+        protected override void BuildOptions(CSharpGeneratorContext context, ICollection<IGeneratorOption> options)
+        {
+            base.BuildOptions(context, options);
+            options.AddRange(GetGeneratorOptions());
+        }
+
+#else
         protected override IList<IGeneratorOption> GetGlobalOptions(CSharpGeneratorContext context)
         {
             return GetGeneratorOptions();
         }
+#endif
 
         private static IList<IGeneratorOption> GetGeneratorOptions()
         {

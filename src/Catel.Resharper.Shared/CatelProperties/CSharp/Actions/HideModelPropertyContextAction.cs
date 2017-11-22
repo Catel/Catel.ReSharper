@@ -69,6 +69,13 @@ namespace Catel.ReSharper.CatelProperties.CSharp.Actions
             IAttribute viewModelToModelAttribute = null;
             if (CatelMVVM.TryGetViewModelToModelAttributeTypeElement(Provider.PsiModule, Provider.SelectedElement.GetResolveContext(), out typeElement))
             {
+#if R2017X
+                viewModelToModelAttribute = (from attribute in PropertyDeclaration.Attributes
+                                             where
+                                                 attribute.TypeReference != null
+                                                 && typeElement.Equals(attribute.TypeReference.Resolve().DeclaredElement)
+                                             select attribute).FirstOrDefault();
+#else
                 viewModelToModelAttribute = (from attribute in PropertyDeclaration.Attributes
                                              where
                                                  attribute.TypeReference != null
@@ -76,11 +83,12 @@ namespace Catel.ReSharper.CatelProperties.CSharp.Actions
                                                  && typeElement.Equals(
                                                      attribute.TypeReference.CurrentResolveResult.DeclaredElement)
                                              select attribute).FirstOrDefault();
+#endif
             }
 
             return viewModelToModelAttribute != null && PropertyDeclaration.HasDefaultCatelImplementation();
         }
 
-        #endregion
+#endregion
     }
 }

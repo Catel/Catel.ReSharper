@@ -7,8 +7,16 @@ namespace Catel.ReSharper
 {
     using System.Windows.Forms;
 
+#if !R2017X
     using JetBrains.ActionManagement;
+#endif
+
     using JetBrains.Application.DataContext;
+
+#if R2017X
+    using JetBrains.Application.UI.ActionsRevised.Menu;
+    using JetBrains.Application.UI.Actions;
+#endif
 
 #if R9X || R10X
     using JetBrains.UI.ActionsRevised;
@@ -17,7 +25,7 @@ namespace Catel.ReSharper
     /// <summary>
     /// The about action
     /// </summary>
-#if R9X || R10X
+#if R9X || R10X || R2017X
     [Action("Catel.ReSharper.About")]
     public class AboutAction : IExecutableAction
 #else
