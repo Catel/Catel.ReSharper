@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\lib\JetBrains.Build.Platform.Tasks.ProxyToSolutionCompiledTask.2.0.20170530.0\build\JetBrains.Build.Platform.Tasks.ProxyToSolutionCompiledTask.Props" Condition="Exists('..\..\lib\JetBrains.Build.Platform.Tasks.ProxyToSolutionCompiledTask.2.0.20170530.0\build\JetBrains.Build.Platform.Tasks.ProxyToSolutionCompiledTask.Props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -41,6 +41,9 @@
     </Reference>
     <Reference Include="Catel.Core, Version=5.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Catel.Core.5.2.0\lib\net45\Catel.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Catel.Fody.Attributes, Version=2.19.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\Catel.Fody.2.19.0\lib\netstandard1.0\Catel.Fody.Attributes.dll</HintPath>
     </Reference>
     <Reference Include="CookComputing.XmlRpcV2, Version=2.5.0.0, Culture=neutral, PublicKeyToken=a7d6e17aa302004d, processorArchitecture=MSIL">
       <HintPath>..\..\lib\xmlrpcnet.2.5.0\lib\net20\CookComputing.XmlRpcV2.dll</HintPath>
@@ -213,6 +216,9 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="FodyWeavers.xml" />
+  </ItemGroup>
   <Import Project="..\Catel.Resharper.Shared\Catel.Resharper.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\lib\Antlr2.Tools.2.7.6.4\build\Antlr2.Tools.targets" Condition="Exists('..\..\lib\Antlr2.Tools.2.7.6.4\build\Antlr2.Tools.targets')" />
@@ -243,6 +249,7 @@
     <Error Condition="!Exists('..\..\lib\JetBrains.Psi.Features.UnitTesting.109.0.20171006.122856\build\JetBrains.Psi.Features.UnitTesting.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\lib\JetBrains.Psi.Features.UnitTesting.109.0.20171006.122856\build\JetBrains.Psi.Features.UnitTesting.targets'))" />
     <Error Condition="!Exists('..\..\lib\JetBrains.Psi.Features.test.Framework.109.0.20171006.122856\build\JetBrains.Psi.Features.test.Framework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\lib\JetBrains.Psi.Features.test.Framework.109.0.20171006.122856\build\JetBrains.Psi.Features.test.Framework.targets'))" />
     <Error Condition="!Exists('..\..\lib\JetBrains.ReSharper.SDK.Internal.109.0.20171006.130447\build\JetBrains.ReSharper.SDK.Internal.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\lib\JetBrains.ReSharper.SDK.Internal.109.0.20171006.130447\build\JetBrains.ReSharper.SDK.Internal.targets'))" />
+    <Error Condition="!Exists('..\..\lib\Fody.2.2.1.0\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\lib\Fody.2.2.1.0\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
   </Target>
   <Import Project="..\..\lib\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.2.0.20151217.1\build\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.Targets" Condition="Exists('..\..\lib\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.2.0.20151217.1\build\JetBrains.Build.Platform.Tasks.ThemedIconsPacker.Targets')" />
   <Import Project="..\..\lib\JetBrains.Platform.Interop.dotMemoryUnit.Framework.109.0.20171006.122404\build\JetBrains.Platform.Interop.dotMemoryUnit.Framework.targets" Condition="Exists('..\..\lib\JetBrains.Platform.Interop.dotMemoryUnit.Framework.109.0.20171006.122404\build\JetBrains.Platform.Interop.dotMemoryUnit.Framework.targets')" />
@@ -265,4 +272,5 @@
   <Import Project="..\..\lib\JetBrains.Psi.Features.UnitTesting.109.0.20171006.122856\build\JetBrains.Psi.Features.UnitTesting.targets" Condition="Exists('..\..\lib\JetBrains.Psi.Features.UnitTesting.109.0.20171006.122856\build\JetBrains.Psi.Features.UnitTesting.targets')" />
   <Import Project="..\..\lib\JetBrains.Psi.Features.test.Framework.109.0.20171006.122856\build\JetBrains.Psi.Features.test.Framework.targets" Condition="Exists('..\..\lib\JetBrains.Psi.Features.test.Framework.109.0.20171006.122856\build\JetBrains.Psi.Features.test.Framework.targets')" />
   <Import Project="..\..\lib\JetBrains.ReSharper.SDK.Internal.109.0.20171006.130447\build\JetBrains.ReSharper.SDK.Internal.targets" Condition="Exists('..\..\lib\JetBrains.ReSharper.SDK.Internal.109.0.20171006.130447\build\JetBrains.ReSharper.SDK.Internal.targets')" />
+  <Import Project="..\..\lib\Fody.2.2.1.0\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\..\lib\Fody.2.2.1.0\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
 </Project>
