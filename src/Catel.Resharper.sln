@@ -45,6 +45,7 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Catel.Resharper.Shared\Catel.Resharper.Shared.projitems*{187c7142-017e-4ba3-97a7-f1687258b778}*SharedItemsImports = 4
 		Catel.Resharper.Shared\Catel.Resharper.Shared.projitems*{20034b76-19a9-4d3b-8fc5-5ab4ff002d97}*SharedItemsImports = 4
+		Catel.Resharper.Shared\Catel.Resharper.Shared.projitems*{7bd7fe56-7ddb-48c4-b21e-1b75457e577a}*SharedItemsImports = 4
 		Catel.Resharper.Shared\Catel.Resharper.Shared.projitems*{89e6d457-c747-4d55-b5a3-ed0b51c3d300}*SharedItemsImports = 4
 		Catel.Resharper.Shared\Catel.Resharper.Shared.projitems*{ab08ddc4-5cab-441d-9017-65348b7044d7}*SharedItemsImports = 4
 		Catel.Resharper.Shared\Catel.Resharper.Shared.projitems*{af7e70c1-6a8a-4681-8130-ffcf7ac79b83}*SharedItemsImports = 4
